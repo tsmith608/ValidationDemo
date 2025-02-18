@@ -49,24 +49,27 @@
       let result_age = document.getElementById("re2");
       
       result_name.innerHTML = user_name + (is_name_valid(user_name) ?  " <span class='green'>is</span> " : " <span class='red'>is not</span> ") + "a valid name.";
-      result_age.innerHTML = user_age + (is_age_valid(user_age) ?  " <span class='green'>is</span> " : " <span class='red'>is not</span> ") + "a valid age.";
+      result_age.innerHTML = user_age + (is_age_valid(user_age) ?  " <span class='green'>is</span> " : " <span class='red'>is not</span> ") + "a valid age. Enter 2 digits";
     });
 
     //TODO: Improve this function to allow names but stop anything that isn't a name.
     function is_name_valid(input){
-      if(input.substr("script") > -1)
+      if(input.indexOf("script") > -1)
         return false;
 
-      if(input.substr("iframe") > -1)
+      if(input.indexOf("iframe") > -1)
         return false;
       
-      return true;
+      //updated method to whitelist up to 16 alphabetic values
+      return /^[A-Za-z]{1,16}$/.test(input);
     }
 
     //TODO: Implement this method to allow age and stop anything else.
     function is_age_valid(input){
-      return true;
+      //whitelisting 2 integers
+      return /^\d{2}$/.test(input);
     }
   </script>
 </body>
 </html>
+
